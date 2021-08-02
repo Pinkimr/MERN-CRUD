@@ -1,0 +1,52 @@
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+  .logindiv {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-left: 250px;
+  }
+  .usernamediv {
+    display: flex;
+    margin: 10px;
+  
+    
+  }
+  .usernameinput{
+    border:black 1px solid;
+    width: 20%;
+    height: 50px;
+  }
+  .pwddiv {
+    display: flex;
+  }
+  .credlabel {
+    width: 15%;
+    margin-left: 3%;
+  }
+  .diverror {
+    color: red;
+  }
+  .divhide {
+    display: none;
+  }
+  
+  .submitdiv {
+    color: white;
+    padding: 7px 10px;
+    margin-left: 20%;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    opacity: 0.9;
+  }
+  
+  .usernameinput {
+  /* // margin-left: 10px; */
+  }
+  .pwdinput {
+    /* margin-left: 10px; */
+  }
