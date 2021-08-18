@@ -37,6 +37,9 @@ const CustomerSchema = new Schema({
     cus_is_deleted: {
         type: Boolean,
         default: false
+    },
+    image: {
+        typr:String
     }
 }, {
     timestamps: { createdAt: 'cus_created_at', updatedAt: "cus_updated_at" },

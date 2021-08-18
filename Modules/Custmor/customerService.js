@@ -1,6 +1,45 @@
 const custmorModel = require('../../models/custmorModel');
 const customerModel = require('../../models/custmorModel');
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, new Date().getTime() + file.originalname);
+    }
+
+});
+const upload = multer({ storage: storage });
+const nodemailer = require('nodemailer')
+
+const transporter = nodemailer.createTransport({
+    host:'smtp.gmail.com',
+    port:587,
+    secure:false,
+    requireTLS:true,
+    auth: {
+        user: "pylrwt@gmail.com",
+        pass: "Payal@7792"
+    }
+});
+
+var mailoptions = {
+    from: "pylrwt@gmail.com",
+    to: "heets143@gmail.com",
+    subject: "Welcome to the Productsite",
+    text: "Hello from Productsite!"
+
+}
+transporter.sendMail(mailoptions, function (err, info){
+    if (err){
+        console.log(err);
+        return;
+    }
+    console.log("Sent: " + info.response);
+})
+
 const jwt = require('jsonwebtoken');
 jwtKey = "jwt"
 const bcrypt  = require('bcrypt');
@@ -20,7 +59,7 @@ return customerModel.findOne(query).then((result) => {
 
             let customerSave = new customerModel(req.body);
 
-            return customerSave.save().then((result) => {
+            return customerSave.save(upload).then((result) => {
                 return result;
             })
         }
@@ -59,7 +98,8 @@ let updateCustomer = async (req) => {
                     cus_password:req.body.cus_password,
                     cus_mobile:req.body.cus_mobile,
                     cus_country:req.body.cus_country,
-                    cus_city:req.body.cus_city
+                    cus_city:req.body.cus_city,
+                   
                 } 
                 )
                 // console.log(updatedUser)
